@@ -3,11 +3,10 @@
 
 # TODO
 - [ ] file loading function
-    - [ ] reading files list
+    - [x] reading files list
     - [ ] extract text from files
-        - [ ] extract text from txt
-        - [ ] extract text from docx
-        - [ ] extract text from doc
+        - [x] extract text from txt
+        - [x] extract text from docx
         - [ ] extract text from pdf
 - [ ] language detection function
     - [ ] referenced method
