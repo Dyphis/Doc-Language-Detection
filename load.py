@@ -17,8 +17,6 @@ def text_extraction(file_path: str) -> str:
         return txt2text(file_path)
     elif split_tup[1] == '.docx':
         return docx2text(file_path)
-    # elif split_tup[1] == '.pdf':
-    #     print('this is the unifinished text extraction for pdf files')
     else:
         return 'unknown file'
 
