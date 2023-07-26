@@ -15,15 +15,20 @@ LABELS = ['en', 'de', 'es', 'fr', 'it', 'nl', 'pl', 'pt', 'ru', 'zh']
 DEVICE =  0 if torch.cuda.is_available() else -1
 
 #create dataset & apply label to id
-def generator(split_name):
+def train_generator():
   for idx, lang in enumerate(LABELS):
-    temp_dataset = load_dataset("stsb_multi_mt", name=lang, split=split_name)
+    temp_dataset = load_dataset("stsb_multi_mt", name=lang, split='train')
+    for sample in temp_dataset:
+      yield {'sentence': sample['sentence1'], 'label': idx}
+      
+def valid_generator():
+  for idx, lang in enumerate(LABELS):
+    temp_dataset = load_dataset("stsb_multi_mt", name=lang, split='valid')
     for sample in temp_dataset:
       yield {'sentence': sample['sentence1'], 'label': idx}
 
-train_set = Dataset.from_generator(generator('train')).shuffle(seed=42)
-valid_set = Dataset.from_generator(generator('valid')).shuffle(seed=42)
-test_set = Dataset.from_generator(generator('test')).shuffle(seed=42)
+train_set = Dataset.from_generator(train_generator).shuffle(seed=42)
+valid_set = Dataset.from_generator(valid_generator).shuffle(seed=42)
 
 #define label2id and id2label function
 label2id = {lang: idx for idx, lang in enumerate(LABELS)}
@@ -37,7 +42,6 @@ def tokenization(sample):
 
 tokenized_train_set = train_set.map(tokenization, batched=True)
 tokenized_valid_set = valid_set.map(tokenization, batched=True)
-tokenized_test_set = test_set.map(tokenization, batched=True)
 
 #training
 model = AutoModelForSequenceClassification.from_pretrained(

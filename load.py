@@ -3,9 +3,9 @@ from docx import Document
 
 def load_file_list(dir_path='.\\docs\\') -> list:
     file_list = []
-    
+    if not os.path.isdir(dir_path):
+      return
     for path in os.listdir(dir_path):
-        
         if os.path.isfile(os.path.join(dir_path, path)):
             file_list.append(os.path.join(dir_path, path))
     
@@ -22,9 +22,7 @@ def text_extraction(file_path: str) -> str:
 
 def txt2text(file_path: str) -> str:
     with open(file_path, 'r') as file:
-        # Read the lines of the file and join them into a single string
         text = ' '.join(file.readlines())
-    # Print the extracted text
     return text
 
 def docx2text(file_path: str) -> str:

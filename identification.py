@@ -4,11 +4,14 @@ from transformers import pipeline
 
 def detection(text_list):
     device = 0 if torch.cuda.is_available() else -1
-    model_ckpt = "papluca/xlm-roberta-base-language-detection"
-    pipe = pipeline("text-classification", model=model_ckpt, device=device)
-
-    model_preds = [s['label'] for s in pipe(text_list, truncation=True, max_length=128)]
-    return model_preds
+    try:
+        model_ckpt = "./pt_save_pretrained"
+        pipe = pipeline("text-classification", model=model_ckpt, device=device)
+        model_preds = [s['label'] for s in pipe(text_list, truncation=True, max_length=128)]
+        return model_preds
+    except:
+        print("Failed loading checkpoint. Please download it or fine-tune it by your own with 'fine-tuning.py'.")
+        return 'error'
 
 
 if __name__ == '__main__':

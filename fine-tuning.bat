@@ -6,7 +6,7 @@ if exist "%ENV_FOLDER%" (
   echo Virtual environment folder found. Activating...
   REM Activate the virtual environment
   call %ENV_FOLDER%\Scripts\activate
-  python main.py
+  python fine-tuning.py
   call deactivate
 ) else (
   echo Failed to activate venv, please run initialization first.

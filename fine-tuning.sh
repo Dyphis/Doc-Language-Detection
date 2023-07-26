@@ -10,7 +10,7 @@ if [ -d "$ENV_FOLDER" ]; then
   source $ENV_FOLDER/bin/activate
   if [ $? -eq 0 ]; then
     echo "Virtual environment activated."
-    python main.py
+    python fine-tuning.py
     deactivate
   else
     echo "Failed to activate virtual environment. Please run initialization first."
