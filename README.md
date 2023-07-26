@@ -4,7 +4,7 @@ Currently, it supports detecting .txt and .docx files. Available languages are: 
 # Get Started
 ## 1. Initialization
 ```bash
-cd DOC-LANGUAGE-DETECTION
+cd Doc-Language-Detection
 ```
 Windows Powershell:
 ```bash
