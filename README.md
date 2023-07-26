@@ -1,6 +1,6 @@
 # Doc Language Detection Tool
 This document language detection tool is based on `xlm-roberta-base` model [1]. The model is fine-tuned on [`STSb Multi MT`](https://huggingface.co/datasets/stsb_multi_mt) dataset.
-Currently, it supports detecting .txt and .docx files.
+Currently, it supports detecting .txt and .docx files. Available languages are: de, en, es, fr, it, nl, pl, pt, ru, zh. It can support more languages by fine-tuning on datasets with other languages.
 # Get Started
 ## 1. Initialization
 ```bash
